@@ -20,16 +20,18 @@ public class MedicineInventory {
     @JoinColumn(name = "medicine_id", nullable = false)
     private Medicine medicine;
     private String batchNo;
+    private Integer quantity;
     private LocalDate expiryDate;
     private LocalDate addedDate;
 
     public MedicineInventory() {
     }
 
-    public MedicineInventory(Long id, Medicine medicine, String batchNo, LocalDate expiryDate, LocalDate addedDate) {
+    public MedicineInventory(Long id, Medicine medicine, String batchNo, Integer quantity, LocalDate expiryDate, LocalDate addedDate) {
         this.id = id;
         this.medicine = medicine;
         this.batchNo = batchNo;
+        this.quantity=quantity;
         this.expiryDate = expiryDate;
         this.addedDate = addedDate;
     }
@@ -58,6 +60,14 @@ public class MedicineInventory {
         this.batchNo = batchNo;
     }
 
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
     public LocalDate getExpiryDate() {
         return expiryDate;
     }
@@ -75,6 +85,6 @@ public class MedicineInventory {
     }
 
     public MedicineInventoryDTO toDTO() {
-        return new MedicineInventoryDTO(id, medicine.getId(), batchNo, expiryDate, addedDate);
+        return new MedicineInventoryDTO(id, medicine.getId(), batchNo, quantity ,expiryDate, addedDate);
     }
 }

@@ -11,4 +11,7 @@ public interface MedicineService {
     public MedicineDTO getMedicineById(Long id) throws PharmacyException;
     public void updateMedicine(MedicineDTO medicineDTO) throws PharmacyException;
     public List<MedicineDTO> getAllMedicines() throws PharmacyException;
+    public Integer getStockById(Long id) throws PharmacyException;
+    public Integer addStockById(Long id, Integer qty) throws PharmacyException;
+    public Integer removeStockById(Long id, Integer qty) throws PharmacyException;
 }

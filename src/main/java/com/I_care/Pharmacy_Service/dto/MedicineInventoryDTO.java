@@ -10,16 +10,18 @@ public class MedicineInventoryDTO {
     private Long id;
     private Long medicineId;
     private String batchNo;
+    private Integer quantity;
     private LocalDate expiryDate;
     private LocalDate addedDate;
 
     public MedicineInventoryDTO() {
     }
 
-    public MedicineInventoryDTO(Long id, Long medicineId, String batchNo, LocalDate expiryDate, LocalDate addedDate) {
+    public MedicineInventoryDTO(Long id, Long medicineId, String batchNo, Integer quantity, LocalDate expiryDate, LocalDate addedDate) {
         this.id = id;
         this.medicineId = medicineId;
         this.batchNo = batchNo;
+        this.quantity=quantity;
         this.expiryDate = expiryDate;
         this.addedDate = addedDate;
     }
@@ -48,6 +50,14 @@ public class MedicineInventoryDTO {
         this.batchNo = batchNo;
     }
 
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
     public LocalDate getExpiryDate() {
         return expiryDate;
     }
@@ -65,6 +75,6 @@ public class MedicineInventoryDTO {
     }
 
     public MedicineInventory toEntity() {
-        return new MedicineInventory(id, new Medicine(id), batchNo, expiryDate, addedDate);
+        return new MedicineInventory(id, new Medicine(id), batchNo, quantity, expiryDate, addedDate);
     }
 }
