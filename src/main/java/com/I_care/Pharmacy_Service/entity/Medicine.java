@@ -29,6 +29,7 @@ public class Medicine {
     private MedicineType medicineType;
     private String manufacturer;
     private Double unitPrice;
+    private Integer stock;
     private LocalDateTime createdAt;
 
     public Medicine() {
@@ -38,7 +39,7 @@ public class Medicine {
         this.id = id;
     }
 
-    public Medicine(Long id, String name, String dosage, MedicineCategory medicineCategory, MedicineType medicineType, String manufacturer, Double unitPrice, LocalDateTime createdAt) {
+    public Medicine(Long id, String name, String dosage, MedicineCategory medicineCategory, MedicineType medicineType, String manufacturer, Double unitPrice,Integer stock, LocalDateTime createdAt) {
         this.id = id;
         this.name = name;
         this.dosage = dosage;
@@ -46,6 +47,7 @@ public class Medicine {
         this.medicineType = medicineType;
         this.manufacturer = manufacturer;
         this.unitPrice = unitPrice;
+        this.stock=stock;
         this.createdAt = createdAt;
     }
 
@@ -105,6 +107,14 @@ public class Medicine {
         this.unitPrice = unitPrice;
     }
 
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -114,7 +124,7 @@ public class Medicine {
     }
 
     public MedicineDTO toDTO() {
-        return new MedicineDTO(id, name, dosage, medicineCategory, medicineType, manufacturer, unitPrice, createdAt);
+        return new MedicineDTO(id, name, dosage, medicineCategory, medicineType, manufacturer, unitPrice,stock, createdAt);
     }
 
 }
