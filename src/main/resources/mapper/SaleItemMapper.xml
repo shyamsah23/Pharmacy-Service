@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.I_care.Pharmacy_Service.mapper.SaleItemMapper">
+    <resultMap id="SaleItemResultMap" type="com.I_care.Pharmacy_Service.entity.SaleItem">
+        <id property="id" column="id"/>
+        <result property="batchNo" column="batch_no"/>
+        <result property="quantity" column="quantity"/>
+        <result property="unitPrice" column="unit_price"/>
+        <association property="sale" javaType="com.I_care.Pharmacy_Service.entity.Sale">
+            <id property="id" column="sale_id"/>
+        </association>
+        <association property="medicine" javaType="com.I_care.Pharmacy_Service.entity.Medicine">
+            <id property="id" column="medicine_id"/>
+        </association>
+    </resultMap>
+
+    <select id="findBySaleItemId" resultMap="SaleItemResultMap">
+        Select * from sale_item where id=#{saleItemId};
+    </select>
+
+    <select id="findBySaleId" resultMap="SaleItemResultMap">
+        Select * from sale_item where sale_id=#{saleId};
+    </select>
+
+    <select id="findByMedicineId" resultMap="SaleItemResultMap">
+        SELECT *
+        FROM sale_item
+        WHERE medicine_id = #{medicineId};
+    </select>
+
+    <select id="existsByBatchNo" resultType="boolean">
+        SELECT COUNT(*) > 0
+        FROM SALE_ITEM
+        WHERE batch_no = #{batchNo}
+    </select>
+
+    <select id="existsBySaleId" resultType="boolean">
+        SELECT COUNT(*) > 0
+        FROM SALE_ITEM
+        WHERE id = #{SaleId}
+    </select>
+
+    <insert id="addSaleItem" parameterType="com.I_care.Pharmacy_Service.entity.SaleItem" useGeneratedKeys="true">
+        Insert into sale_item (sale_id, medicine_id,batch_no,quantity,unit_price)
+        values (#{saleId},#{medicineId},#{batchNo},#{quantity},#{unitPrice})
+    </insert>
+
+    <update id="updateSaleItem" parameterType="com.I_care.Pharmacy_Service.entity.SaleItem">
+        UPDATE sale_item SET quantity = #{quantity}, unit_price = #{unitPrice} WHERE batch_no = #{batchNo};
+    </update>
+
+    <select id="findByBatchNo" resultMap="SaleItemResultMap">
+        select * from sale_item where batch_no= #{batchNo};
+    </select>
+
+</mapper>

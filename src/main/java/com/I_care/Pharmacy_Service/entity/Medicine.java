@@ -39,7 +39,7 @@ public class Medicine {
         this.id = id;
     }
 
-    public Medicine(Long id, String name, String dosage, MedicineCategory medicineCategory, MedicineType medicineType, String manufacturer, Double unitPrice,Integer stock, LocalDateTime createdAt) {
+    public Medicine(Long id, String name, String dosage, MedicineCategory medicineCategory, MedicineType medicineType, String manufacturer, Double unitPrice, Integer stock, LocalDateTime createdAt) {
         this.id = id;
         this.name = name;
         this.dosage = dosage;
@@ -47,7 +47,7 @@ public class Medicine {
         this.medicineType = medicineType;
         this.manufacturer = manufacturer;
         this.unitPrice = unitPrice;
-        this.stock=stock;
+        this.stock = stock;
         this.createdAt = createdAt;
     }
 
@@ -124,7 +124,7 @@ public class Medicine {
     }
 
     public MedicineDTO toDTO() {
-        return new MedicineDTO(id, name, dosage, medicineCategory, medicineType, manufacturer, unitPrice,stock, createdAt);
+        return new MedicineDTO(id, name, dosage, medicineCategory, medicineType, manufacturer, unitPrice, stock, createdAt);
     }
 
 }

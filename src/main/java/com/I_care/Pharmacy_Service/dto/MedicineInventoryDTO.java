@@ -19,15 +19,15 @@ public class MedicineInventoryDTO {
     public MedicineInventoryDTO() {
     }
 
-    public MedicineInventoryDTO(Long id, Long medicineId, String batchNo, Integer quantity, LocalDate expiryDate, LocalDate addedDate,Integer initialQuantity, StockStatus status) {
+    public MedicineInventoryDTO(Long id, Long medicineId, String batchNo, Integer quantity, LocalDate expiryDate, LocalDate addedDate, Integer initialQuantity, StockStatus status) {
         this.id = id;
         this.medicineId = medicineId;
         this.batchNo = batchNo;
-        this.quantity=quantity;
+        this.quantity = quantity;
         this.expiryDate = expiryDate;
         this.addedDate = addedDate;
-        this.initialQuantity=initialQuantity;
-        this.status=status;
+        this.initialQuantity = initialQuantity;
+        this.status = status;
     }
 
     public Long getId() {
@@ -54,9 +54,13 @@ public class MedicineInventoryDTO {
         this.batchNo = batchNo;
     }
 
-    public Integer getQuantity() {return quantity;}
+    public Integer getQuantity() {
+        return quantity;
+    }
 
-    public void setQuantity(Integer quantity) {this.quantity = quantity;}
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
 
     public LocalDate getExpiryDate() {
         return expiryDate;
@@ -70,17 +74,27 @@ public class MedicineInventoryDTO {
         return addedDate;
     }
 
-    public void setAddedDate(LocalDate addedDate) {this.addedDate = addedDate;}
+    public void setAddedDate(LocalDate addedDate) {
+        this.addedDate = addedDate;
+    }
 
-    public Integer getInitialQuantity() {return initialQuantity;}
+    public Integer getInitialQuantity() {
+        return initialQuantity;
+    }
 
-    public void setInitialQuantity(Integer initialQuantity) {this.initialQuantity = initialQuantity;}
+    public void setInitialQuantity(Integer initialQuantity) {
+        this.initialQuantity = initialQuantity;
+    }
 
-    public StockStatus getStatus() { return status;}
+    public StockStatus getStatus() {
+        return status;
+    }
 
-    public void setStatus(StockStatus status) { this.status = status;}
+    public void setStatus(StockStatus status) {
+        this.status = status;
+    }
 
     public MedicineInventory toEntity() {
-        return new MedicineInventory(id, new Medicine(id), batchNo, quantity, expiryDate, addedDate,initialQuantity,status);
+        return new MedicineInventory(id, new Medicine(medicineId), batchNo, quantity, expiryDate, addedDate, initialQuantity, status);
     }
 }

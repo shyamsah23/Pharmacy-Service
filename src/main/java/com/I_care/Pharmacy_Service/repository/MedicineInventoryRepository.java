@@ -7,5 +7,5 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface MedicineInventoryRepository extends JpaRepository<MedicineInventory, Long> {
-    List<MedicineInventory>findByExpiryDataBefore(LocalDate date);
+    List<MedicineInventory> findByExpiryDateBefore(LocalDate date);
 }

@@ -46,7 +46,6 @@ public class MedicineController {
         return new ResponseEntity<>(new ResponseDTO(PharmacyConstant.MEDICINE_UPDATED), HttpStatus.OK);
     }
 
-    @Scheduled()
     @GetMapping("/getAll")
     public ResponseEntity<List<MedicineDTO>> getAllMedicines() throws PharmacyException {
         return new ResponseEntity<>(medicineService.getAllMedicines(), HttpStatus.OK);

@@ -28,7 +28,7 @@ public class MedicineDTO {
         this.medicineType = medicineType;
         this.manufacturer = manufacturer;
         this.unitPrice = unitPrice;
-        this.stock=stock;
+        this.stock = stock;
         this.createdAt = createdAt;
     }
 
@@ -105,6 +105,6 @@ public class MedicineDTO {
     }
 
     public Medicine toEntity() {
-        return new Medicine(id, name, dosage, medicineCategory, medicineType, manufacturer, unitPrice,stock, createdAt);
+        return new Medicine(id, name, dosage, medicineCategory, medicineType, manufacturer, unitPrice, stock, createdAt);
     }
 }
