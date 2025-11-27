@@ -74,7 +74,7 @@ public class SalesController {
 
     @GetMapping("/saleItem/get/{id}")
     public ResponseEntity<SaleItemDTO> getSaleItemById(@PathVariable Long id) throws PharmacyException {
-        logger.info("Fetching sale item with id={}", id);
+        logger.info("Fetching sale item with id ={}", id);
         return new ResponseEntity<>(saleItemService.getSaleItem(id), HttpStatus.OK);
     }
 }
