@@ -47,6 +47,9 @@ management:
       exposure:
         include: health,info,circuitbreakers
 
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.I_care.Pharmacy_Service.entity
 
 
 

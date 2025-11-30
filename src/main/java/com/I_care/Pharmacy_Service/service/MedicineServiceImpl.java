@@ -2,7 +2,6 @@ package com.I_care.Pharmacy_Service.service;
 
 import com.I_care.Pharmacy_Service.dto.MedicineDTO;
 import com.I_care.Pharmacy_Service.entity.Medicine;
-import com.I_care.Pharmacy_Service.entity.MedicineInventory;
 import com.I_care.Pharmacy_Service.exception.PharmacyException;
 import com.I_care.Pharmacy_Service.repository.MedicineRepository;
 import com.I_care.Pharmacy_Service.utility.PharmacyConstant;
@@ -71,23 +70,28 @@ public class MedicineServiceImpl implements MedicineService {
 
     @Override
     public Integer getStockById(Long id) throws PharmacyException {
-        return medicineRepository.findStockById(id).orElseThrow(()->new PharmacyException(PharmacyConstant.ZERO_MEDICINE_QUANTITY));
+        return medicineRepository.findStockById(id).orElseThrow(() -> new PharmacyException(PharmacyConstant.ZERO_MEDICINE_QUANTITY));
     }
 
     @Override
     public Integer addStockById(Long id, Integer qty) throws PharmacyException {
-       Medicine meds=medicineRepository.findById(id).orElseThrow(()->new PharmacyException(PharmacyConstant.MEDICINE_NOT_FOUND));
-       meds.setStock(meds.getStock()+qty);
-       medicineRepository.save(meds);
-       return meds.getStock();
+        logger.info("Medicine with id={} having quantity={} being added", id, qty);
+        Medicine meds = medicineRepository.findById(id).orElseThrow(() -> new PharmacyException(PharmacyConstant.MEDICINE_NOT_FOUND));
+        meds.setStock(meds.getStock() + qty);
+        logger.info("New stock for given medicine is ={}", meds.getStock());
+        medicineRepository.save(meds);
+        logger.info("Medicines added to inventory");
+        return meds.getStock();
     }
 
     @Override
     public Integer removeStockById(Long id, Integer qty) throws PharmacyException {
-        Medicine meds= medicineRepository.findById(id).orElseThrow(()->new PharmacyException(PharmacyConstant.MEDICINE_NOT_FOUND));
-        if(meds.getStock()<qty) meds.setStock(0);
-        else meds.setStock(meds.getStock()-qty);
+        logger.info("Medicine with id={} having quantity={} being removed from inventory", id, qty);
+        Medicine meds = medicineRepository.findById(id).orElseThrow(() -> new PharmacyException(PharmacyConstant.MEDICINE_NOT_FOUND));
+        if (meds.getStock() < qty) meds.setStock(0);
+        else meds.setStock(meds.getStock() - qty);
         medicineRepository.save(meds);
+        logger.info("Medicines removed from inventory");
         return meds.getStock();
     }
 }

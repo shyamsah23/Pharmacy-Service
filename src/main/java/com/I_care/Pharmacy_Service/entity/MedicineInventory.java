@@ -1,13 +1,8 @@
 package com.I_care.Pharmacy_Service.entity;
 
 import com.I_care.Pharmacy_Service.dto.MedicineInventoryDTO;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
+import com.I_care.Pharmacy_Service.enums.StockStatus;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -23,17 +18,22 @@ public class MedicineInventory {
     private Integer quantity;
     private LocalDate expiryDate;
     private LocalDate addedDate;
+    private Integer initialQuantity;
+    @Enumerated(EnumType.STRING)
+    private StockStatus status;
 
     public MedicineInventory() {
     }
 
-    public MedicineInventory(Long id, Medicine medicine, String batchNo, Integer quantity, LocalDate expiryDate, LocalDate addedDate) {
+    public MedicineInventory(Long id, Medicine medicine, String batchNo, Integer quantity, LocalDate expiryDate, LocalDate addedDate, Integer initialQuantity, StockStatus status) {
         this.id = id;
         this.medicine = medicine;
         this.batchNo = batchNo;
-        this.quantity=quantity;
+        this.quantity = quantity;
         this.expiryDate = expiryDate;
         this.addedDate = addedDate;
+        this.initialQuantity = initialQuantity;
+        this.status = status;
     }
 
     public Long getId() {
@@ -84,7 +84,23 @@ public class MedicineInventory {
         this.addedDate = addedDate;
     }
 
+    public Integer getInitialQuantity() {
+        return initialQuantity;
+    }
+
+    public void setInitialQuantity(Integer initialQuantity) {
+        this.initialQuantity = initialQuantity;
+    }
+
+    public StockStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(StockStatus status) {
+        this.status = status;
+    }
+
     public MedicineInventoryDTO toDTO() {
-        return new MedicineInventoryDTO(id, medicine.getId(), batchNo, quantity ,expiryDate, addedDate);
+        return new MedicineInventoryDTO(id, medicine.getId(), batchNo, quantity, expiryDate, addedDate, initialQuantity, status);
     }
 }
