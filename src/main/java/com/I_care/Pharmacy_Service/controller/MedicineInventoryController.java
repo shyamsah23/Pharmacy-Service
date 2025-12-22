@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("pharmacy/inventory/medicines")
+@RequestMapping("/pharmacy/inventory/medicines")
 public class MedicineInventoryController {
 
     @Autowired

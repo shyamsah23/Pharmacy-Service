@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SaleServiceImpl implements SaleService {
 
@@ -27,6 +29,14 @@ public class SaleServiceImpl implements SaleService {
         saleMapper.addSale(saleDTO.getPrescriptionId(), saleDTO.getSaleDate(), saleDTO.getTotalAmount());
         logger.info("Sales order created successfully");
         return saleMapper.getSaleByPrescriptionId(saleDTO.getPrescriptionId()).getId();
+    }
+
+    @Override
+    public List<SaleDTO> getAllSales() throws PharmacyException {
+        logger.info("Fetching all sales");
+        List<SaleDTO>sales=saleMapper.getAllSales().stream().map(Sale::toDTO).toList();
+        logger.info("Fetched all sales data");
+        return sales;
     }
 
     @Override

@@ -16,6 +16,10 @@
         values (#{prescriptionId},#{saleDate},#{totalAmount})
     </insert>
 
+    <select id="getAllSales" resultMap="SaleResultMap">
+        select * from sale
+    </select>
+
     <select id="existsByPrescriptionId" resultType="boolean">
         SELECT COUNT(*) > 0
         FROM sale
