@@ -32,7 +32,7 @@ public class SalesController {
         return new ResponseEntity<>(saleService.createSale(saleDTO), HttpStatus.OK);
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public ResponseEntity<ResponseDTO> updateSale(@RequestBody SaleDTO saleDTO) throws PharmacyException {
         logger.info("Trying to update sales order with prescription id={}", saleDTO.getPrescriptionId());
         saleService.updateSale(saleDTO);
@@ -45,7 +45,7 @@ public class SalesController {
         return new ResponseEntity<>(saleItemService.createSaleItem(saleItemDTO), HttpStatus.OK);
     }
 
-    @PostMapping("/saleItem/update")
+    @PutMapping("/saleItem/update")
     public ResponseEntity<ResponseDTO> updateSaleItem(@RequestBody SaleItemDTO saleItemDTO) throws PharmacyException {
         logger.info("Trying to update sales order with batch no={}", saleItemDTO.getBatchNo());
         saleItemService.updateSaleItem(saleItemDTO);
@@ -65,7 +65,13 @@ public class SalesController {
         return new ResponseEntity<>(saleService.getSale(id), HttpStatus.OK);
     }
 
-    @GetMapping("/saleItem/get/{saleId}")
+    @GetMapping("/getAll")
+    public ResponseEntity<List<SaleDTO>> getAllSale() throws PharmacyException {
+        logger.info("Fetching all sales order");
+        return new ResponseEntity<>(saleService.getAllSales(), HttpStatus.OK);
+    }
+
+    @GetMapping("/saleItem/getBySaleId/{saleId}")
     public ResponseEntity<List<SaleItemDTO>> getSaleItems(@PathVariable Long saleId) throws PharmacyException {
         logger.info("Trying to fetch sale items with sale id={}", saleId);
         List<SaleItemDTO> saleItems = saleItemService.getSaleItemsBySaleId(saleId);
