@@ -9,13 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
@@ -49,5 +43,17 @@ public class MedicineController {
     @GetMapping("/getAll")
     public ResponseEntity<List<MedicineDTO>> getAllMedicines() throws PharmacyException {
         return new ResponseEntity<>(medicineService.getAllMedicines(), HttpStatus.OK);
+    }
+
+    @PutMapping("/addStocks/id={id}&qty={qty}")
+    public ResponseEntity<Integer> addMedsStocks(@RequestParam Long id,Integer qty) throws PharmacyException {
+        Integer updatedQty=medicineService.addStockById(id,qty);
+        return new ResponseEntity<>(updatedQty, HttpStatus.OK);
+    }
+
+    @PutMapping("/removeStocks/id={id}&qty={qty}")
+    public ResponseEntity<Integer> removeMedsStocks(@RequestParam Long id,Integer qty) throws PharmacyException {
+        Integer updatedQty=medicineService.removeStockById(id,qty);
+        return new ResponseEntity<>(updatedQty, HttpStatus.OK);
     }
 }
